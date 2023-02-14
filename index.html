@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>CRUD Operation Example</h2>
+    <table>
+      <tr>
+        <td>Name:</td>
+        <td><input type="text" id="name"></td>
+      </tr>
+      <tr>
+        <td>Age:</td>
+        <td><input type="text" id="age"></td>
+      </tr>
+      <tr>
+        <td>Occupation:</td>
+        <td><input type="text" id="occupation"></td>
+      </tr>
+    </table>
+    <br>
+    <button onclick="store()">Store</button>
+    <br><br>
+    <table border="1" id="display">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Occupation</th>
+  
+  
+  
+    
+
+    <script type="text/javascript">
+        // Global Variables
+        var data = [];
+        var id = 0;
+    
+        // Add a new item to the array
+        function store() {
+          var name = document.getElementById("name").value;
+          var age = document.getElementById("age").value;
+          var occupation = document.getElementById("occupation").value;
+    
+          data.push({
+            id: id,
+            name: name,
+            age: age,
+            occupation: occupation
+          });
+          id++;
+    
+          displayData();
+        }
+    
+        // Delete an item from the array
+        function del(index) {
+          data.splice(index, 1);
+          displayData();
+        }
+    
+        // Update an item in the array
+        function update(index) {
+          var name = prompt("Enter new name: ");
+          var age = prompt("Enter new age: ");
+          var occupation = prompt("Enter new occupation: ");
+    
+          data[index].name = name;
+          data[index].age = age;
+          data[index].occupation = occupation;
+    
+          displayData();
+        }
+    
+        // Display the array data
+        function displayData() {
+          var result = "";
+          for (var i = 0; i < data.length; i++) {
+            result += "<tr>";
+            result += "<td>" + data[i].id + "</td>";
+            result += "<td>" + data[i].name + "</td>";
+            result += "<td>" + data[i].age + "</td>";
+            result += "<td>" + data[i].occupation + "</td>";
+            result += "<td><button onclick='del(" + i + ")'>Delete</button></td>";
+            result += "<td><button onclick='update(" + i + ")'>Update</button></td>";
+            result += "</tr>";
+          }
+          document.getElementById("display").innerHTML = result;
+        }
+      </script>
+</body>
+</html>
